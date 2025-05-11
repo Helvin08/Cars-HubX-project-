@@ -107,6 +107,9 @@ function login() {
   function volkswagen() {
     window.location.href ="/cars/volkswagen.html"; 
   }
+  function Abarth() {
+    window.location.href ="/cars/Abarth.html"; 
+  }
   //second page box
 
   function Volvo() {
@@ -196,6 +199,16 @@ function login() {
   }
   function corvette() {
     window.location.href ="/cars/Chevrolet corvette.html"; 
+  }
+  function Toyota() {
+    window.location.href ="/cars/Toyota.html"; 
+  }
+//social-media//
+function github() {
+    window.location.href = ; 
+  }
+function whatsapp() {
+    window.location.href = ; 
   }
 
 

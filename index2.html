@@ -17,16 +17,28 @@
           height="70"
         />
         <h1 class="text-grunge"><i>Cars Hub<h1 class="text-color">X</h1></i></h1>
-        <button onclick="login()" type="button1" class="btn">
-          <strong>Login</strong>
-          <div id="container-stars">
-            <div id="stars"></div>
-          </div>
-          <div id="glow">
-            <div class="circle"></div>
-            <div class="circle"></div>
-          </div>
-        </button>
+        <div
+  aria-label="User Login Button"
+  tabindex="0"
+  role="button"
+  class="user-profile"
+  onclick="login()"
+>
+  <div class="user-profile-inner">
+    <svg
+      aria-hidden="true"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+    >
+      <g data-name="Layer 2" id="Layer_2">
+        <path
+          d="m15.626 11.769a6 6 0 1 0 -7.252 0 9.008 9.008 0 0 0 -5.374 8.231 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 9.008 9.008 0 0 0 -5.374-8.231zm-7.626-4.769a4 4 0 1 1 4 4 4 4 0 0 1 -4-4zm10 14h-12a1 1 0 0 1 -1-1 7 7 0 0 1 14 0 1 1 0 0 1 -1 1z"
+        ></path>
+      </g>
+    </svg>
+    <p>Log In</p>
+  </div>
+</div>
       </div>
     </div>
     <center>
@@ -349,6 +361,17 @@
         />
         <center>
           <h2>Chevrolet corvette</h2>
+        </center>
+      </div>
+      <div onclick="Toyota()" class="box2">
+        <img
+          src="/image/Toyota.jpg"
+          width="200px"
+          height="200px"
+          alt="car"
+        />
+        <center>
+          <h2>Toyota</h2>
         </center>
       </div>
     </center>
