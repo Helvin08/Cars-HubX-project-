@@ -204,12 +204,7 @@ function login() {
     window.location.href ="/cars/Toyota.html"; 
   }
 //social-media//
-function github() {
-    window.location.href = ; 
-  }
-function whatsapp() {
-    window.location.href = ; 
-  }
+
 
 
 
