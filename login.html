@@ -5,18 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login - Cars HubX</title>
     <link rel="stylesheet" href="login.css" />
-    <link rel="icon" href="/image/CARS HUBX.png" />
+    <link rel="icon" href="image/CARS HUBX.png" />
   </head>
-  <body style="background-color: black">
-    <center>
-      <form class="form">
-        <div class="flex-column">
-          <label
-            ><h1>Welcome</h1>
-            <h3>Cars HubX</h3></label
-          >
-          <label>Email</label>
-        </div>
+  <body>
+    <div class="login-container">
+      <div class="form-section">
+        <form class="form">
+          <div class="flex-column">
+            <center>
+            <label
+              ><h1>Welcome</h1>
+              <h3>Cars HubX</h3></label
+            >
+            </center>
+            <label>Email</label>
+          </div>
+         
         <div class="inputForm">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -55,6 +59,7 @@
             class="input"
             type="password"
           />
+          <i class="fa fa-eye toggle-password" onclick="togglePasswordVisibility()"></i>
         </div>
 
         <div class="flex-row">
@@ -116,6 +121,7 @@
           </button>
         </div>
       </form>
-    </center>
+      </div>
+    </div>
   </body>
 </html>

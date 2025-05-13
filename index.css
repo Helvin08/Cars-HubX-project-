@@ -348,10 +348,15 @@ footer {
         .youtube .bg { background: #ff0000; }
         .linkedin .bg { background: #0077b5; }
         .whatsapp .bg { background: #075e54; }
-        .email .bg { background: #f4590b; }
+        .email .bg { background:#f4eec4; }
+        .instagram .bg { background: linear-gradient(45deg, #f1be49, #e1306c); }
 
         /* Custom hover styles */
         .facebook:hover .svg-container {
+            border: 1px solid rgba(230, 230, 230, 0.466);
+            background-color: rgba(204, 204, 204, 0.466);
+        }
+        .instagram:hover .svg-container {
             border: 1px solid rgba(230, 230, 230, 0.466);
             background-color: rgba(204, 204, 204, 0.466);
         }
