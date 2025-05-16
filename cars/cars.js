@@ -30,6 +30,32 @@ function email() {
   function telegram() {
     window.location.href = "https://t.me/carshubx";
   }
-  function linkedin() {
-    window.location.href = "https://linkedin.com/in/sahaya-helvin";
+  //BMW button//
+  function BMW() {
+    window.location.href ="https://www.bmw.com/en/index.html"; 
   }
+  function game(){
+    window.location.href = "BMW animation.html";
+  }  //google translation//
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        autoDisplay: false,
+        includedLanguages: 'es,fr,de,it,pt,zh-CN,ja,ko,ta,hi,kn,ml,ar,ru,te',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+    }, 'google_translate_element');
+    var googleTranslate = document.querySelector('.skiptranslate');
+    if (googleTranslate) {
+        googleTranslate.style.display = 'none';
+    }
+}
+
+function showGoogleTranslate() {
+    var googleTranslateDiv = document.getElementById('google_translate_element');
+    googleTranslateDiv.style.display = 'block'; // Show the translation element
+}
+
+function hideGoogleTranslate() {
+    var googleTranslateDiv = document.getElementById('google_translate_element');
+    googleTranslateDiv.style.display = 'none'; // Hide the translation element
+}

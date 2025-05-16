@@ -250,8 +250,4 @@ function email() {
   function telegram() {
     window.location.href = "https://t.me/carshubx";
   }
-  function linkedin() {
-    window.location.href = "https://linkedin.com/in/sahaya-helvin";
-  }
-
-
+  

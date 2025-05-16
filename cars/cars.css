@@ -45,42 +45,7 @@
   }
   /* about */
 
-.about {
-  font-family: Arial, sans-serif;
-  line-height: 1.6;
-  margin: 0;
-  padding: 0;
-  background-color: #0c0c0c;
-}
 
-header {
-  background: rgb(118, 5, 5);
-  color: #ffffff;
-  padding: 20px 0;
-  text-align: center;
-}
-
-nav ul {
-  list-style: none;
-  padding: 0;
-}
-
-nav ul li {
-  display: inline;
-  margin: 0 15px;
-}
-
-nav ul li a {
-  color: #ffffff;
-  text-decoration: none;
-}
-
-section {
-  padding: 20px;
-  margin: 20px;
-  background: #ffffff;
-  border-radius: 5px;
-}
 
 footer {
   text-align: center;
@@ -90,6 +55,69 @@ footer {
   position: relative;
   bottom: 0;
   width: 100%;
+}
+
+/* BMW Series Styles */
+.bmw-series {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.series-title {
+    color: #ffffff;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    text-align: center;
+    border-bottom: 2px solid rgb(144, 0, 0);
+    padding-bottom: 10px;
+}
+
+.series-section {
+    margin-bottom: 40px;
+    background: rgb(0, 0, 0);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.model-title {
+    color: rgb(144, 0, 0);
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    border-left: 4px solid rgb(144, 0, 0);
+    padding-left: 15px;
+}
+
+.model-list {
+    list-style: none;
+    padding: 0;
+}
+
+.model-list li {
+    color: #ffffff;
+    margin-bottom: 15px;
+    padding: 10px;
+    border-bottom: 1px solid rgba(144, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.model-list li:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateX(10px);
+}
+
+.model-list li strong {
+    color: #e0e0e0;
+    display: inline-block;
+    min-width: 150px;
+    margin-right: 10px;
+}
+
+.series-section p {
+    color: #ffffff;
+    line-height: 1.6;
+    margin-bottom: 20px;
 }
 
 /*box*/
@@ -113,9 +141,12 @@ footer {
 }
 /*social media*/
 .social-media{
-  margin-bottom: 10px;
-  margin-top: 70px;
-  
+  margin-bottom: 20px;
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
 }
 .btn-base {
             width: 45px;
@@ -173,7 +204,6 @@ footer {
         .facebook .bg { background: #1877f2; }
         .telegram .bg { background: #24a1de; }
         .youtube .bg { background: #ff0000; }
-        .linkedin .bg { background: #0077b5; }
         .whatsapp .bg { background: #075e54; }
         .email .bg { background:#f4eec4; }
         .instagram .bg { background: linear-gradient(45deg, #f1be49, #e1306c); }
@@ -192,3 +222,138 @@ footer {
             border: 1px solid rgba(255, 110, 110, 0.466);
             background-color: rgba(219, 219, 219, 0.466);
         }
+        /*div style*/
+        .parent {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    gap: 8px;
+}
+    
+.div1 {
+    grid-column: span 3 / span 3;
+    grid-row: span 5 / span 5;
+}
+
+.div2 {
+    grid-column: span 2 / span 2;
+    grid-row: span 5 / span 5;
+    grid-column-start: 4;
+}
+/*cars image*/
+.car-image{
+  width: 100px;
+  height: 100px;
+  margin-left: 10px;
+ 
+}
+/*Title*/
+.title{
+  font-size: 80px;
+  font-weight: bold;
+  margin-left: 20px;
+  margin-top: 10px;
+}
+.b{
+  color:#81C4FF;
+  font-size: 50px;
+  font-weight: bold;
+}
+.v{
+  color: #16588E;
+   font-size: 50px;
+  font-weight: bold;
+}
+.r{
+  color:#E7222E;
+   font-size: 50px;
+  font-weight: bold;
+}
+/*title2*/
+.title2{
+  font-size: 50px;
+  font-weight: bold;
+  margin-left: 20px;
+  margin-top: 10px;
+}
+/*subtitle*/
+.subtitle{
+  font-size: 40px;
+  font-weight: bold;
+  margin-left: 60px;
+  margin-top: 20px;
+}
+/*image*/
+
+.image {
+  display: flex;
+  border-color: black;
+  border-width: 2px;
+  border-style: solid;
+  display: inline-block;
+  align-items: center;
+  justify-content: space-around;
+  border-radius: 10px;
+ 
+  transition: all 0.5s;
+ 
+  margin-top: 20px;
+  margin-left: 10px;
+  margin-right: 30px;
+}
+
+.image-container1 {
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+}
+
+.image-3d {
+  -webkit-appearance: none;
+  appearance: none;
+  position: relative;
+  border-width: 0;
+  padding: 0 8px;
+  min-width: 4em;
+  min-height: 4em;
+  box-sizing: border-box;
+  background: transparent;
+  font: inherit;
+  cursor: pointer;
+  margin: 10px;
+  border-radius: 20px;
+}
+
+.image-top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+  padding: 8px 16px;
+  transform: translateY(0);
+  color: #070707;
+  border-radius: 20px;
+  transition: transform 0.3s, border-radius 0.3s, background 10s;
+}
+.image-3d:active .image-top {
+  border-radius: 10px 10px 8px 8px / 8px;
+  transform: translateY(2px);
+}
+
+
+
+
+
+
+
+
+.image:hover {
+  z-index: 1;
+  color: rgb(212, 11, 11);
+  background-color: #070707;
+}
+
+.image:hover {
+  transform: scale(0.9);
+}
