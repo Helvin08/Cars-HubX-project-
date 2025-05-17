@@ -5,18 +5,32 @@
     font-family: "Roboto", sans-serif;
   }
   
+  body {
+    background-image:url(/image/backgroundbmw1.jpg) ;
+    background-size: cover;
+    background-attachment: fixed;
+
+    padding-top: 90px;
+  }
   .nav {
     background-color: rgba(0, 0, 0, 0.927);
     color: white;
     padding: 10px;
     height: 90px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    width: 100%;
   }
   
   .nav-content {
     display: flex;
     align-items: center;
     max-width: 1200px;
-    margin: 0 auto;
+    margin-left: 40px;
     padding: 0 20px;
   }
   
@@ -60,8 +74,8 @@ footer {
 /* BMW Series Styles */
 .bmw-series {
     max-width: 1200px;
-    margin: 0 auto;
     padding: 20px;
+    margin: 0 auto;
 }
 
 .series-title {
@@ -228,6 +242,9 @@ footer {
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(5, 1fr);
     gap: 8px;
+    margin-top: 0%; 
+    min-height: calc(100vh - 90px); 
+    padding: 20px;
 }
     
 .div1 {
@@ -245,14 +262,15 @@ footer {
   width: 100px;
   height: 100px;
   margin-left: 10px;
+
  
 }
 /*Title*/
 .title{
   font-size: 80px;
   font-weight: bold;
-  margin-left: 20px;
-  margin-top: 10px;
+  margin-left: 5px;
+  margin-bottom: 20px;
 }
 .b{
   color:#81C4FF;
@@ -294,11 +312,13 @@ footer {
   align-items: center;
   justify-content: space-around;
   border-radius: 10px;
+  background-color: #070707;
+  color:rgb(212, 11, 11);
  
   transition: all 0.5s;
  
   margin-top: 20px;
-  margin-left: 10px;
+  margin-left: 40px;
   margin-right: 30px;
 }
 
@@ -341,19 +361,248 @@ footer {
   transform: translateY(2px);
 }
 
-
-
-
-
-
-
-
 .image:hover {
   z-index: 1;
-  color: rgb(212, 11, 11);
+  color: rgb(249, 248, 248);
   background-color: #070707;
 }
 
 .image:hover {
   transform: scale(0.9);
+}
+/* Explore Button  */  
+button {
+ position: relative;
+ display: inline-block;
+ cursor: pointer;
+ outline: none;
+ border: 0;
+ vertical-align: middle;
+ text-decoration: none;
+ background: transparent;
+ padding: 0;
+ font-size: inherit;
+ font-family: inherit;
+}
+
+button.learn-more {
+ width: 12rem;
+ height: auto;
+}
+
+button.learn-more .circle {
+ transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+ position: relative;
+ display: block;
+ margin: 0;
+ width: 3rem;
+ height: 3rem;
+ background:rgb(144, 0, 0);
+ border-radius: 1.625rem;
+}
+
+button.learn-more .circle .icon {
+ transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+ position: absolute;
+ top: 0;
+ bottom: 0;
+ margin: auto;
+ background: #fff;
+}
+
+button.learn-more .circle .icon.arrow {
+ transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+ left: 0.625rem;
+ width: 1.125rem;
+ height: 0.125rem;
+ background: none;
+}
+
+button.learn-more .circle .icon.arrow::before {
+ position: absolute;
+ content: "";
+ top: -0.29rem;
+ right: 0.0625rem;
+ width: 0.625rem;
+ height: 0.625rem;
+ border-top: 0.125rem solid #fff;
+ border-right: 0.125rem solid #fff;
+ transform: rotate(45deg);
+}
+
+button.learn-more .button-text {
+ transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+ position: absolute;
+ top: 0;
+ left: 0;
+ right: 0;
+ bottom: 0;
+ padding: 0.75rem 0;
+ margin: 0 0 0 1.85rem;
+ color: #282936;
+ font-weight: 700;
+ line-height: 1.6;
+ text-align: center;
+ text-transform: uppercase;
+}
+
+button:hover .circle {
+ width: 100%;
+}
+
+button:hover .circle .icon.arrow {
+ background: #fff;
+ transform: translate(1rem, 0);
+}
+
+button:hover .button-text {
+ color: #fff;
+}
+#google_translate_element {
+    position: fixed;
+    top: 90px;
+    right: 20px;
+    z-index: 999;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 0 0 4px 4px;
+    padding: 5px;
+}
+
+/*search bar*/
+.container {
+  position: relative;
+  box-sizing: border-box;
+  width: fit-content;
+  margin-right: 55px;
+}
+
+.mainbox {
+  box-sizing: border-box;
+  position: relative;
+  width: 230px;
+  height: 50px;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: center;
+  border-radius: 160px;
+  background-color: rgb(0, 0, 0);
+  transition: all 0.3s ease;
+}
+
+.checkbox:focus {
+  border: none;
+  outline: none;
+}
+
+.checkbox:checked {
+  right: 10px;
+}
+
+.checkbox:checked ~ .mainbox {
+  width: 50px;
+}
+
+.checkbox:checked ~ .mainbox .search_input {
+  width: 0;
+  height: 0px;
+}
+
+.checkbox:checked ~ .mainbox .iconContainer {
+  padding-right: 8px;
+}
+
+.checkbox {
+  box-sizing: border-box;
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  right: 17px;
+  top: 10px;
+  z-index: 9;
+  cursor: pointer;
+  appearance: none;
+}
+
+.search_input {
+  box-sizing: border-box;
+  height: 100%;
+  width: 170px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  padding-bottom: 4px;
+  padding-left: 10px;
+  font-size: 1em;
+  color: white;
+  transition: all 0.3s ease;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.search_input::placeholder {
+  color: rgba(255, 255, 255, 0.776);
+}
+
+.iconContainer {
+  box-sizing: border-box;
+  padding-top: 5px;
+  width: fit-content;
+  transition: all 0.3s ease;
+}
+
+.search_icon {
+  box-sizing: border-box;
+  fill: white;
+  font-size: 1.3em;
+}
+/*home button*/
+.home-button {
+  font-family: inherit;
+  font-size: 20px;
+  background: #212121;
+  color: white;
+  fill: rgb(155, 153, 153);
+  padding: 0.7em 1em;
+  padding-left: 0.9em;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  border: none;
+  border-radius: 15px;
+  font-weight: 1000;
+}
+
+.home-button span {
+  display: block;
+  margin-left: 0.3em;
+  transition: all 0.3s ease-in-out;
+}
+
+.home-button svg {
+  display: block;
+  transform-origin: center center;
+  transition: transform 0.3s ease-in-out;
+}
+
+.home-button:hover {
+  background: #000;
+}
+
+.home-button:hover .svg-wrapper {
+  transform: scale(1.25);
+  transition: 0.5s linear;
+}
+
+.home-button:hover svg {
+  transform: translateX(1.2em) scale(1.1);
+  fill: #fff;
+}
+
+.home-button:hover span {
+  opacity: 0;
+  transition: 0.5s linear;
+}
+
+.home-button:active {
+  transform: scale(0.95);
 }
