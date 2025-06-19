@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cars HubX - Forgot Password</title>
+    <link rel="stylesheet" href="login.css" />
+    <link rel="icon" href="image/CARS HUBX.png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  </head>
+  <body style="background-color: #0a0a0a;">
+
+    <main class="login-container">
+      <div class="form-section">
+        <form class="form" id="forgotPasswordForm" novalidate>
+          <div class="flex-column">
+            <h1>Forgot Password</h1>
+            <h2 class="brand-name">Cars HubX</h2>
+          </div>
+         
+          <div class="input-group">
+            <label for="email" class="form-label">Email Address</label>
+            <div class="inputForm">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 32 32" aria-hidden="true">
+                <path d="m30.853 13.87a15 15 0 0 0 -29.729 4.082 15.1 15.1 0 0 0 12.876 12.918 15.6 15.6 0 0 0 2.016.13 14.85 14.85 0 0 0 7.715-2.145 1 1 0 1 0 -1.031-1.711 13.007 13.007 0 1 1 5.458-6.529 2.149 2.149 0 0 1 -4.158-.759v-10.856a1 1 0 0 0 -2 0v1.726a8 8 0 1 0 .2 10.325 4.135 4.135 0 0 0 7.83.274 15.2 15.2 0 0 0 .823-7.455zm-14.853 8.13a6 6 0 1 1 6-6 6.006 6.006 0 0 1 -6 6z"></path>
+              </svg>
+              <input 
+                id="email" 
+                name="email"
+                placeholder="Enter your email" 
+                class="input" 
+                type="email" 
+                required 
+                autocomplete="email"
+              />
+            </div>
+          </div>
+
+          <div class="message-container" aria-live="polite"></div>
+
+          <p class="reset-instructions">
+            Enter your email address and we'll send you instructions to reset your password.
+          </p>
+
+          <button type="submit" class="button-submit">Send Reset Link</button>
+          
+          <div class="flex-row links-container">
+            <a href="login.html" class="link">Back to Login</a>
+            <a href="sign up.html" class="link">Create Account</a>
+          </div>
+        </form>
+      </div>
+    </main>
+    
+    <div class="home-button-container">
+      <button onclick="location.href='index.html'" class="home-button">
+        <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
+          <path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+        </svg>
+        Back to Home
+      </button>
+    </div>
+      <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('forgotPasswordForm');
+        const email = document.getElementById('email');
+        const messageContainer = document.querySelector('.message-container');
+        
+        // Show message function with improved styling and accessibility
+        function showMessage(message, type) {
+          const messageDiv = document.createElement('div');
+          messageDiv.className = `message ${type}`;
+          messageDiv.textContent = message;
+          messageDiv.setAttribute('role', 'alert');
+          
+          messageContainer.innerHTML = '';
+          messageContainer.appendChild(messageDiv);
+          
+          if (type !== 'error') {
+            setTimeout(() => {
+              messageDiv.remove();
+            }, 5000);
+          }
+        }
+        
+        // Enhanced email validation
+        function validateEmail(email) {
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          return emailRegex.test(email);
+        }
+
+        // Generate reset token
+        function generateResetToken() {
+          return Math.random().toString(36).substring(2, 15) + 
+                 Math.random().toString(36).substring(2, 15);
+        }
+
+        // Store reset token with 30-minute expiration
+        function storeResetToken(email, token) {
+          const resetData = {
+            token: token,
+            email: email,
+            expiry: Date.now() + (30 * 60 * 1000) // 30 minutes
+          };
+          localStorage.setItem('resetToken_' + email, JSON.stringify(resetData));
+        }
+
+        // Check if user exists
+        function checkUserExists(email) {
+          const users = JSON.parse(localStorage.getItem('users')) || [];
+          return users.some(user => user.email === email);
+        }
+        
+        // Form submission
+        form.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          
+          if (!validateEmail(email.value)) {
+            showMessage('Please enter a valid email address', 'error');
+            return;
+          }
+
+          if (!checkUserExists(email.value)) {
+            showMessage('No account found with this email address', 'error');
+            return;
+          }
+          
+          // Show loading state
+          const submitButton = form.querySelector('button[type="submit"]');
+          const originalText = submitButton.textContent;
+          submitButton.disabled = true;
+          submitButton.textContent = 'Sending...';
+          
+          try {
+            // Generate and store reset token
+            const resetToken = generateResetToken();
+            storeResetToken(email.value, resetToken);
+
+            // Simulate sending email (in a real app, this would be an API call)
+            await new Promise(resolve => setTimeout(resolve, 1500));
+            
+            showMessage('Password reset link sent! Please check your email.', 'success');
+            
+            // Reset form
+            form.reset();
+            
+            // Simulated reset link (in a real app, this would be sent via email)
+            console.log(`Reset link: ${window.location.origin}/reset-password.html?token=${resetToken}&email=${encodeURIComponent(email.value)}`);
+            
+            // Reset button
+            setTimeout(() => {
+              submitButton.disabled = false;
+              submitButton.textContent = originalText;
+            }, 2000);
+            
+          } catch (error) {
+            showMessage('An error occurred. Please try again.', 'error');
+            submitButton.disabled = false;
+            submitButton.textContent = originalText;
+          }
+        });
+      });
+    </script>
+    
+    <style>
+      .reset-instructions {
+        color: #999;
+        font-size: 0.9em;
+        margin-bottom: 20px;
+        line-height: 1.5;
+      }
+      
+      .links-container {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+      }
+
+      .message {
+        padding: 12px;
+        border-radius: 4px;
+        margin-bottom: 15px;
+        font-size: 0.9em;
+      }
+
+      .message.error {
+        background-color: rgba(220, 53, 69, 0.1);
+        color: #dc3545;
+        border: 1px solid rgba(220, 53, 69, 0.2);
+      }
+
+      .message.success {
+        background-color: rgba(40, 167, 69, 0.1);
+        color: #28a745;
+        border: 1px solid rgba(40, 167, 69, 0.2);
+      }
+    </style>
+  </body>
+</html>

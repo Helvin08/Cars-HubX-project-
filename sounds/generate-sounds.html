@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Generate Notification Sounds</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    button {
+      padding: 10px 15px;
+      margin: 10px 5px;
+      cursor: pointer;
+    }
+    .sound-item {
+      margin-bottom: 20px;
+      padding: 15px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+    .sound-controls {
+      display: flex;
+      align-items: center;
+    }
+    .sound-controls button {
+      margin-right: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Notification Sound Generator</h1>
+  <p>This page generates notification sounds for the Cars Hub website.</p>
+  
+  <div class="sound-item">
+    <h3>Default Notification</h3>
+    <div class="sound-controls">
+      <button onclick="generateSound('notification', 520, 0.2)">Generate</button>
+      <button onclick="playSound('notification')">Play</button>
+      <button onclick="downloadSound('notification')">Download</button>
+    </div>
+  </div>
+  
+  <div class="sound-item">
+    <h3>Success Notification</h3>
+    <div class="sound-controls">
+      <button onclick="generateSound('success', 700, 0.3)">Generate</button>
+      <button onclick="playSound('success')">Play</button>
+      <button onclick="downloadSound('success')">Download</button>
+    </div>
+  </div>
+  
+  <div class="sound-item">
+    <h3>Error Notification</h3>
+    <div class="sound-controls">
+      <button onclick="generateSound('error', 330, 0.4)">Generate</button>
+      <button onclick="playSound('error')">Play</button>
+      <button onclick="downloadSound('error')">Download</button>
+    </div>
+  </div>
+  
+  <div class="sound-item">
+    <h3>Warning Notification</h3>
+    <div class="sound-controls">
+      <button onclick="generateSound('warning', 440, 0.3)">Generate</button>
+      <button onclick="playSound('warning')">Play</button>
+      <button onclick="downloadSound('warning')">Download</button>
+    </div>
+  </div>
+  
+  <div class="sound-item">
+    <h3>Info Notification</h3>
+    <div class="sound-controls">
+      <button onclick="generateSound('info', 600, 0.2)">Generate</button>
+      <button onclick="playSound('info')">Play</button>
+      <button onclick="downloadSound('info')">Download</button>
+    </div>
+  </div>
+  
+  <script>
+    // Audio context
+    let audioContext;
+    
+    // Sound buffers
+    const soundBuffers = {};
+    
+    // Initialize audio context
+    function initAudioContext() {
+      if (!audioContext) {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        audioContext = new AudioContext();
+      }
+      return audioContext;
+    }
+    
+    // Generate a simple notification sound
+    function generateSound(name, frequency, duration) {
+      const context = initAudioContext();
+      
+      // Create an audio buffer
+      const sampleRate = context.sampleRate;
+      const bufferLength = duration * sampleRate;
+      const buffer = context.createBuffer(1, bufferLength, sampleRate);
+      const data = buffer.getChannelData(0);
+      
+      // Fill the buffer with a simple sine wave
+      for (let i = 0; i < bufferLength; i++) {
+        // Sine wave
+        const t = i / sampleRate;
+        data[i] = Math.sin(2 * Math.PI * frequency * t);
+        
+        // Apply envelope (fade in/out)
+        const fadeTime = 0.05;
+        if (t < fadeTime) {
+          // Fade in
+          data[i] *= (t / fadeTime);
+        } else if (t > duration - fadeTime) {
+          // Fade out
+          data[i] *= (duration - t) / fadeTime;
+        }
+        
+        // Apply overall volume reduction
+        data[i] *= 0.5;
+      }
+      
+      // Store the buffer
+      soundBuffers[name] = buffer;
+      
+      console.log(`Generated ${name} sound`);
+      
+      // Play the sound
+      playSound(name);
+    }
+    
+    // Play a generated sound
+    function playSound(name) {
+      const context = initAudioContext();
+      const buffer = soundBuffers[name];
+      
+      if (!buffer) {
+        console.error(`Sound ${name} not generated yet`);
+        return;
+      }
+      
+      const source = context.createBufferSource();
+      source.buffer = buffer;
+      source.connect(context.destination);
+      source.start();
+    }
+    
+    // Download a generated sound as WAV
+    function downloadSound(name) {
+      const buffer = soundBuffers[name];
+      
+      if (!buffer) {
+        console.error(`Sound ${name} not generated yet`);
+        return;
+      }
+      
+      // Convert AudioBuffer to WAV
+      const wav = audioBufferToWav(buffer);
+      const blob = new Blob([wav], { type: 'audio/wav' });
+      
+      // Create download link
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `${name}.wav`;
+      a.style.display = 'none';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+    
+    // Convert AudioBuffer to WAV format
+    function audioBufferToWav(buffer) {
+      const numChannels = buffer.numberOfChannels;
+      const sampleRate = buffer.sampleRate;
+      const format = 1; // PCM
+      const bitDepth = 16;
+      
+      const bytesPerSample = bitDepth / 8;
+      const blockAlign = numChannels * bytesPerSample;
+      
+      const bufferLength = buffer.length;
+      const byteRate = sampleRate * blockAlign;
+      const dataSize = bufferLength * numChannels * bytesPerSample;
+      const headerSize = 44;
+      const totalSize = headerSize + dataSize;
+      
+      const arrayBuffer = new ArrayBuffer(totalSize);
+      const view = new DataView(arrayBuffer);
+      
+      // RIFF chunk descriptor
+      writeString(view, 0, 'RIFF');
+      view.setUint32(4, 36 + dataSize, true);
+      writeString(view, 8, 'WAVE');
+      
+      // fmt sub-chunk
+      writeString(view, 12, 'fmt ');
+      view.setUint32(16, 16, true); // fmt chunk size
+      view.setUint16(20, format, true);
+      view.setUint16(22, numChannels, true);
+      view.setUint32(24, sampleRate, true);
+      view.setUint32(28, byteRate, true);
+      view.setUint16(32, blockAlign, true);
+      view.setUint16(34, bitDepth, true);
+      
+      // data sub-chunk
+      writeString(view, 36, 'data');
+      view.setUint32(40, dataSize, true);
+      
+      // Write audio data
+      const channelData = [];
+      for (let i = 0; i < numChannels; i++) {
+        channelData.push(buffer.getChannelData(i));
+      }
+      
+      let offset = 44;
+      for (let i = 0; i < bufferLength; i++) {
+        for (let channel = 0; channel < numChannels; channel++) {
+          const sample = Math.max(-1, Math.min(1, channelData[channel][i]));
+          const value = sample < 0 ? sample * 0x8000 : sample * 0x7FFF;
+          view.setInt16(offset, value, true);
+          offset += bytesPerSample;
+        }
+      }
+      
+      return arrayBuffer;
+    }
+    
+    // Helper function to write a string to a DataView
+    function writeString(view, offset, string) {
+      for (let i = 0; i < string.length; i++) {
+        view.setUint8(offset + i, string.charCodeAt(i));
+      }
+    }
+    
+    // Generate default sounds on page load
+    window.addEventListener('load', () => {
+      generateSound('notification', 520, 0.2);
+      generateSound('success', 700, 0.3);
+      generateSound('error', 330, 0.4);
+      generateSound('warning', 440, 0.3);
+      generateSound('info', 600, 0.2);
+    });
+  </script>
+</body>
+</html>

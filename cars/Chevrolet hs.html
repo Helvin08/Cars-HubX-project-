@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="cars.css" />
+  <title>Cars HubX - Chevrolet - History</title>
+  <link rel="icon" href="/image/CARS HUBX.png" />
+  <script type="text/javascript" src="cars.js"></script>
+</head>
+
+<body class="body">
+  <div class="nav">
+    <div class="nav-content">
+      <img src="/image/CARS HUBX.png" alt="Cars HubX" width="70" height="70" />
+      <h1 class="Text-grunge">Cars Hub<strong class="text-color">X</strong></h1>
+
+      <!------------------------------------ Search Bar---------------------------------- -->
+      <div class="container">
+        <input checked="" class="checkbox" type="checkbox">
+        <div class="mainbox">
+          <div onclick="searchCars()" class="iconContainer">
+            <svg viewBox="0 0 512 512" height="1em" xmlns="http://www.w3.org/2000/svg" class="search_icon">
+              <path
+                d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z">
+              </path>
+            </svg>
+          </div>
+          <input class="search_input" placeholder="search" type="text">
+        </div>
+      </div>
+      <!----------------------------------------------- Home Button --------------------------->      <button class="home-button" onclick="home()">
+        <div class="svg-wrapper-1">
+          <div class="svg-wrapper">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28" color="#ffffff"
+              fill="white">
+              <path
+                d="M7.08848 4.76364L6.08847 5.54453C4.57182 6.72887 3.81348 7.32105 3.40674 8.15601C3 8.99097 3 9.95552 3 11.8846V13.9767C3 17.763 3 19.6562 4.17157 20.8325C5.11466 21.7793 6.52043 21.964 9 22V18.0057C9 17.0738 9 16.6078 9.15224 16.2403C9.35523 15.7502 9.74458 15.3609 10.2346 15.1579C10.6022 15.0057 11.0681 15.0057 12 15.0057C12.9319 15.0057 13.3978 15.0057 13.7654 15.1579C14.2554 15.3609 14.6448 15.7502 14.8478 16.2403C15 16.6078 15 17.0738 15 18.0057V22C17.4796 21.964 18.8853 21.7793 19.8284 20.8325C21 19.6562 21 17.763 21 13.9767V11.8846C21 9.95552 21 8.99097 20.5933 8.15601C20.1865 7.32105 19.4282 6.72887 17.9115 5.54453L16.9115 4.76364C14.5521 2.92121 13.3724 2 12 2C10.6276 2 9.44787 2.92121 7.08848 4.76364Z"
+                stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" />
+            </svg>
+          </div>
+        </div> <span>Home</span>
+      </button>
+     
+
+    </div>
+    <div class="subtitle-container">
+      <nav>
+        <ul>
+          <li><a href="Chevrolet.html">Desktop Wallpaper </a></li>
+          <li>|</li>
+          <li><a class="color" href="Chevrolet hs.html">History </a></li>
+          <li> |</li>
+          <li><a href="Chevrolet mobile wall.html">Mobile Wallpaper </a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+   <!------------------------- Chat Button ----------------------------->
+<button class="chatBtn" onclick="openChat()" aria-label="Open chat">
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H5.17L4 17.17V4h16v12z"/>
+    <path fill="currentColor" d="M7 9h10v2H7zm0-3h10v2H7zm0 6h7v2H7z"/>
+  </svg>
+  <span class="tooltip">Chat with us!</span>
+</button>
+   <!------------------------------------social media buttons   ----------------------------------->
+  <div class="social-media">
+    <center>
+
+      <button onclick="facebook()" class="btn-base facebook">
+        <span class="svg-container">
+          <svg viewBox="0 0 320 512" height="1.3em" fill="white">
+            <path
+              d="M80 299.3V512H196V299.3h86.5l18-97.8H196V166.9c0-51.7 20.3-71.5 72.7-71.5c16.3 0 29.4 .4 37 1.2V7.9C291.4 4 256.4 0 236.2 0C129.3 0 80 50.5 80 159.4v42.1H14v97.8H80z">
+            </path>
+          </svg>
+        </span>
+        <span class="bg"></span>
+      </button>
+      <button onclick="instagram()" class="btn-base instagram">
+        <span class="svg-container">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" color="#ffffff"
+            fill="none">
+            <path
+              d="M2.5 12C2.5 7.52166 2.5 5.28249 3.89124 3.89124C5.28249 2.5 7.52166 2.5 12 2.5C16.4783 2.5 18.7175 2.5 20.1088 3.89124C21.5 5.28249 21.5 7.52166 21.5 12C21.5 16.4783 21.5 18.7175 20.1088 20.1088C18.7175 21.5 16.4783 21.5 12 21.5C7.52166 21.5 5.28249 21.5 3.89124 20.1088C2.5 18.7175 2.5 16.4783 2.5 12Z"
+              stroke="#ffffff" strokeWidth="1.5" strokeLinejoin="round"></path>
+            <path
+              d="M16.5 12C16.5 14.4853 14.4853 16.5 12 16.5C9.51472 16.5 7.5 14.4853 7.5 12C7.5 9.51472 9.51472 7.5 12 7.5C14.4853 7.5 16.5 9.51472 16.5 12Z"
+              stroke="#ffffff" strokeWidth="1.5"></path>
+            <path d="M17.5078 6.5L17.4988 6.5" stroke="#ffffff" strokeWidth="1.5" strokeLinecap="round"
+              strokeLinejoin="round"></path>
+          </svg>
+        </span>
+        <span class="bg"></span>
+      </button>
+
+      <button onclick="telegram()" class="btn-base telegram">
+        <span class="svg-container">
+          <svg viewBox="0 0 496 512" height="1.6em" fill="white">
+            <path
+              d="M248 8C111 8 0 119 0 256S111 504 248 504 496 393 496 256 385 8 248 8zM363 176.7c-3.7 39.2-19.9 134.4-28.1 178.3-3.5 18.6-10.3 24.8-16.9 25.4-14.4 1.3-25.3-9.5-39.3-18.7-21.8-14.3-34.2-23.2-55.3-37.2-24.5-16.1-8.6-25 5.3-39.5 3.7-3.8 67.1-61.5 68.3-66.7 .2-.7 .3-3.1-1.2-4.4s-3.6-.8-5.1-.5q-3.3 .7-104.6 69.1-14.8 10.2-26.9 9.9c-8.9-.2-25.9-5-38.6-9.1-15.5-5-27.9-7.7-26.8-16.3q.8-6.7 18.5-13.7 108.4-47.2 144.6-62.3c68.9-28.6 83.2-33.6 92.5-33.8 2.1 0 6.6 .5 9.6 2.9a10.5 10.5 0 0 1 3.5 6.7A43.8 43.8 0 0 1 363 176.7z">
+            </path>
+          </svg>
+        </span>
+        <span class="bg"></span>
+      </button>
+
+      <button onclick="youtube()" class="btn-base youtube">
+        <span class="svg-container">
+          <svg viewBox="0 0 576 512" height="1.6em" fill="white">
+            <path
+              d="M549.7 124.1c-6.3-23.7-24.8-42.3-48.3-48.6C458.8 64 288 64 288 64S117.2 64 74.6 75.5c-23.5 6.3-42 24.9-48.3 48.6-11.4 42.9-11.4 132.3-11.4 132.3s0 89.4 11.4 132.3c6.3 23.7 24.8 41.5 48.3 47.8C117.2 448 288 448 288 448s170.8 0 213.4-11.5c23.5-6.3 42-24.2 48.3-47.8 11.4-42.9 11.4-132.3 11.4-132.3s0-89.4-11.4-132.3zm-317.5 213.5V175.2l142.7 81.2-142.7 81.2z">
+            </path>
+          </svg>
+        </span>
+        <span class="bg"></span>
+      </button>
+
+      <button onclick="email()" class="btn-base email">
+        <span class="svg-container">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28" color="#d0021b"
+            fill="none">
+            <path d="M2 6L8.91302 9.91697C11.4616 11.361 12.5384 11.361 15.087 9.91697L22 6" stroke="#d0021b"
+              strokeWidth="3" strokeLinejoin="round"></path>
+            <path
+              d="M2.01577 13.4756C2.08114 16.5412 2.11383 18.0739 3.24496 19.2094C4.37608 20.3448 5.95033 20.3843 9.09883 20.4634C11.0393 20.5122 12.9607 20.5122 14.9012 20.4634C18.0497 20.3843 19.6239 20.3448 20.7551 19.2094C21.8862 18.0739 21.9189 16.5412 21.9842 13.4756C22.0053 12.4899 22.0053 11.5101 21.9842 10.5244C21.9189 7.45886 21.8862 5.92609 20.7551 4.79066C19.6239 3.65523 18.0497 3.61568 14.9012 3.53657C12.9607 3.48781 11.0393 3.48781 9.09882 3.53656C5.95033 3.61566 4.37608 3.65521 3.24495 4.79065C2.11382 5.92608 2.08114 7.45885 2.01576 10.5244C1.99474 11.5101 1.99475 12.4899 2.01577 13.4756Z"
+              stroke="#d0021b" strokeWidth="3" strokeLinejoin="round"></path>
+          </svg>
+        </span>
+        <span class="bg"></span>
+      </button>
+    </center>
+  </div>
+
+
+
+
+  <footer>
+    <h2 class="text">Created by</h2>
+    <img src="/image/SH Web app studio2.png" alt="Cars ClubX" width="200" height="100" />
+    <p>&copy; 2025 Cars HubX:FOR Car Enthusiasts Wallpaper& History </p>
+  </footer>
+  </div>
+  <script src="cars.js"></script>
+</body>
+</html>

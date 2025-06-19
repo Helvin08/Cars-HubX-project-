@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="cars.css" />
+  <title>Cars HubX - BMW Cars - History</title>
+  <link rel="icon" href="/image/CARS HUBX.png" />
+  <script type="text/javascript" src="cars.js"></script>  <!-- Google Translate Scripts -->
+  <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</head>
+
+<body class="body1">
+  <div class="nav">
+    <div class="nav-content">
+      <img src="/image/CARS HUBX.png" alt="Cars HubX" width="70" height="70" />
+      <h1 class="Text-grunge">Cars Hub<strong class="text-color">X</strong></h1>
+
+      <!------------------------------------ Search Bar---------------------------------- -->
+      <div class="container">
+        <input checked="" class="checkbox" type="checkbox">
+        <div class="mainbox">
+          <div onclick="searchCars()" class="iconContainer">
+            <svg viewBox="0 0 512 512" height="1em" xmlns="http://www.w3.org/2000/svg" class="search_icon">
+              <path
+                d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z">
+              </path>
+            </svg>
+          </div>
+          <input class="search_input" placeholder="search" type="text">
+        </div>
+      </div>
+      <!----------------------------------------------- Home Button --------------------------->      <button class="home-button" onclick="home()">
+        <div class="svg-wrapper-1">
+          <div class="svg-wrapper">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28" color="#ffffff"
+              fill="white">
+              <path
+                d="M7.08848 4.76364L6.08847 5.54453C4.57182 6.72887 3.81348 7.32105 3.40674 8.15601C3 8.99097 3 9.95552 3 11.8846V13.9767C3 17.763 3 19.6562 4.17157 20.8325C5.11466 21.7793 6.52043 21.964 9 22V18.0057C9 17.0738 9 16.6078 9.15224 16.2403C9.35523 15.7502 9.74458 15.3609 10.2346 15.1579C10.6022 15.0057 11.0681 15.0057 12 15.0057C12.9319 15.0057 13.3978 15.0057 13.7654 15.1579C14.2554 15.3609 14.6448 15.7502 14.8478 16.2403C15 16.6078 15 17.0738 15 18.0057V22C17.4796 21.964 18.8853 21.7793 19.8284 20.8325C21 19.6562 21 17.763 21 13.9767V11.8846C21 9.95552 21 8.99097 20.5933 8.15601C20.1865 7.32105 19.4282 6.72887 17.9115 5.54453L16.9115 4.76364C14.5521 2.92121 13.3724 2 12 2C10.6276 2 9.44787 2.92121 7.08848 4.76364Z"
+                stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" />
+            </svg>
+          </div>
+        </div> <span>Home</span>
+      </button>     
+       <!------------------------------------------ Google Translate Button ---------------------------->
+      <button onclick="showGoogleTranslate()" class="home-button" >
+        <div class="svg-wrapper-1">
+          <div class="svg-wrapper">
+            <svg viewBox="0 0 24 24" width="24" height="24">
+              <path fill="currentColor" d="M12.87 15.07l-2.54-2.51.03-.03A17.52 17.52 0 0014.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z"/>
+            </svg>
+          </div>
+        </div>
+        <span>Translate</span>
+      </button>
+
+      <!-- Google Translate Element -->
+      <div id="google_translate_element"></div>
+
+    </div>
+        <div class="subtitle-container">
+           <nav>
+          <ul>
+              <li><a  href="BMW.html">Desktop Wallpaper </a></li>
+              <li>|</li>
+              <li><a class="color" href="BMW hs.html">History </a></li>
+              <li>  |</li>
+              <li><a href="BMW mobile wall.html">Mobile Wallpaper </a></li>
+          </ul>
+      </nav>
+        </div>
+    </div>
+     <!------------------------- Chat Button ----------------------------->
+<button class="chatBtn" onclick="openChat()" aria-label="Open chat">
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <path fill="currentColor" d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H5.17L4 17.17V4h16v12z"/>
+    <path fill="currentColor" d="M7 9h10v2H7zm0-3h10v2H7zm0 6h7v2H7z"/>
+  </svg>
+  <span class="tooltip">Chat with us!</span>
+</button>
+     <!---------------------------------------------div------------------------------------>
+      
+    <div>
+        <br>
+        <button onclick="BMW()">
+       
+         <img  class="car-image" src="/image/BMW wh.png" alt="BMW" />
+       
+        <h1 class="title">BMW</h1><h1>(Bayerische Motoren Werke)</h1></button>
+        <br>
+        <h2 class="subtitle">Cars History:</h2>
+     <div>
+        
+        <br><br>
+        <h2>Let's delve into the main BMW series and some of their significant generations:</h2>
+
+<section class="bmw-series">
+    <h2 class="series-title">The Foundation: Pre-War Era</h2>
+    <p>BMW's journey into automobile manufacturing began in the late 1920s.</p>
+    
+    <div class="series-section">
+        <h3 class="model-title">Early Foundations (1929-1934)</h3>
+        <ul class="model-list">
+            <li><strong>BMW 3/15 PS (Dixi) (1929-1932):</strong> BMW's first foray into automobiles. Based on the Austin Seven, it was crucial for establishing BMW as a car manufacturer. It was a small, affordable car that helped BMW navigate the economic challenges of the time.</li>
+            <li><strong>BMW 3/20 PS (1932-1934):</strong> This marked BMW's first independently designed car. It featured a 782 cc four-cylinder engine and showcased BMW's engineering ambitions beyond simply licensing existing designs.</li>
+            <li><strong>BMW 303 (1933-1934):</strong> A pivotal model, the 303 introduced BMW's iconic twin-kidney grille and their first straight-six engine (1.2L). This engine was smoother and more powerful than the previous four-cylinders, hinting at BMW's future focus on refined performance.</li>
+        </ul>
+    </div>
+
+    <div class="series-section">
+        <h3 class="model-title">Pre-War Golden Era (1934-1941)</h3>
+        <ul class="model-list">
+            <li><strong>BMW 315 & 319 (1934-1937):</strong> These models further developed the straight-six engine lineage with larger displacements (1.5L and 1.9L respectively). They offered improved performance and more luxurious features compared to the earlier models.</li>
+            <li><strong>BMW 326 (1936-1941):</strong> A larger and more luxurious model, the 326 featured a sophisticated chassis and a smooth 2.0L straight-six engine. It was a significant step towards BMW's reputation for combining sportiness with elegance.</li>
+            <li><strong>BMW 327 (1937-1941):</strong> The stylish coupe and convertible versions of the 326, showcasing BMW's design flair. These models are highly sought after by collectors today.</li>
+            <li><strong>BMW 328 (1936-1940):</strong> A legendary sports car that cemented BMW's sporting credentials. Its advanced engine technology and lightweight design made it incredibly successful in motorsports, including the Mille Miglia.</li>
+            <li><strong>BMW 335 (1939-1941):</strong> A larger, more luxurious model with a powerful 3.5L straight-six engine. It was known for its smooth ride and advanced features for the time.</li>
+        </ul>
+    </div>
+</section>
+
+<section class="bmw-series">
+    <h2 class="series-title">Post-War Recovery and the "New Class" (1950s - 1970s)</h2>
+    <p>BMW's journey to rebuild and reinvent itself after World War II.</p>
+
+    <div class="series-section">
+        <h3 class="model-title">Post-War Revival (1952-1965)</h3>
+        <ul class="model-list">
+            <li><strong>BMW 501 & 502 (1952-1962):</strong> Known as the "Baroque Angels," these were luxurious and elegant sedans powered by V8 engines (the 502 being Germany's first post-war V8). While beautiful, they were expensive and didn't achieve high sales volumes, putting BMW in a precarious financial position.</li>
+            <li><strong>BMW 600 & 700 (1957-1965):</strong> These small, unconventional cars (the 600 was a stretched Isetta microcar) helped BMW survive the financial difficulties of the late 1950s by offering affordable transportation.</li>
+        </ul>
+    </div>
+
+    <div class="series-section">
+        <h3 class="model-title">The New Class (1962-1977)</h3>
+        <ul class="model-list">
+            <li><strong>BMW 1500, 1600, 1800, 2000:</strong> This series was a turning point for BMW. These modern, sporty sedans with their independent suspension, overhead camshaft engines, and stylish design were commercially successful and established BMW's image as a manufacturer of sporty, premium sedans.</li>
+            <li><strong>BMW 2002:</strong> A two-door version of the 1600/2000 that became particularly iconic for its performance and handling, setting the stage for BMW's future sporting sedans.</li>
+        </ul>
+    </div>
+</section>
+
+<h2>The Numbered Series Era (1970s - Present)</h2>
+
+<section class="bmw-series">
+    <h2 class="series-title">The Modern BMW Era</h2>
+    <p>This is where BMW's modern naming convention truly took hold.</p>
+
+    <div class="series-section">
+        <h3 class="model-title">BMW 5 Series</h3>
+        <ul class="model-list">
+            <li><strong>E12 (1972-1981):</strong> The first generation of the 5 Series, establishing the template for the modern sporty executive sedan.</li>
+            <li><strong>E28 (1981-1988):</strong> Introduced anti-lock brakes (ABS) and the first M5 (E28 M5).</li>
+            <li><strong>E34 (1988-1996):</strong> Known for its refined handling and advanced technology. Offered in sedan and Touring (wagon) body styles.</li>
+            <li><strong>E39 (1995-2003):</strong> Widely regarded as a benchmark in its class for its balance of comfort, handling, and performance.</li>
+            <li><strong>E60/E61 (2003-2010):</strong> A more controversial design but packed with technology. Offered in sedan and Touring.</li>
+            <li><strong>F10/F11 (2010-2016):</strong> A return to a more traditional and elegant design.</li>
+            <li><strong>G30/G31 (2017-Present):</strong> The current generation, continuing the 5 Series tradition of blending luxury and sportiness with advanced technology.</li>
+        </ul>
+    </div>
+    <div class="series-section">
+        <h3 class="model-title">BMW 3 Series</h3>
+        <ul class="model-list">
+            <li><strong>E21 (1975-1983):</strong> The first generation of the 3 Series, replacing the 02 Series and becoming BMW's entry-level model. Initially only available as a two-door sedan.</li>
+            <li><strong>E30 (1982-1994):</strong> A hugely popular and iconic generation, available in two-door sedan, four-door sedan, convertible, and Touring body styles. Also spawned the first M3 (E30 M3), a legendary sports car.</li>
+            <li><strong>E36 (1990-2000):</strong> A more modern and aerodynamic design, introduced the hatchback (Compact) and coupe body styles to the 3 Series lineup.</li>
+            <li><strong>E46 (1998-2006):</strong> Another highly acclaimed generation, known for its balanced handling and refined driving experience.</li>
+            <li><strong>E90/E91/E92/E93 (2005-2013):</strong> The first 3 Series generation to widely utilize turbocharged engines. Offered in sedan, Touring, coupe, and convertible.</li>
+            <li><strong>F30/F31/F34/F35 (2012-2019):</strong> The sedan and Touring (F30/F31) were joined by the Gran Turismo (F34) with a hatchback design, and a long-wheelbase sedan for the Chinese market (F35). The coupe and convertible were spun off into the 4 Series.</li>
+            <li><strong>G20/G21 (2019-Present):</strong> The current generation, emphasizing technology, connectivity, and a more dynamic driving experience.</li>
+        </ul>
+    </div>
+
+    <div class="series-section">
+        <h3 class="model-title">BMW 7 Series</h3>
+        <ul class="model-list">
+            <li><strong>E23 (1977-1986):</strong> BMW's first large luxury sedan, establishing its presence in the executive car market.</li>
+            <li><strong>E32 (1986-1994):</strong> Introduced more advanced technology and the first V12 engine in a post-war German car.</li>
+            <li><strong>E38 (1994-2001):</strong> Considered by many to be a design classic, known for its elegant styling and sophisticated features.</li>
+            <li><strong>E65/E66 (2001-2008):</strong> A controversial design that marked a significant shift in BMW's styling direction and iDrive infotainment system.</li>
+            <li><strong>F01/F02 (2008-2015):</strong> A more conservative design approach with continued technological advancements.</li>
+            <li><strong>G11/G12 (2015-Present):</strong> The current generation, featuring lightweight construction, advanced driver-assistance systems, and luxurious appointments.</li>
+        </ul>
+    </div>
+    <div class="series-section">
+        <h3 class="model-title">BMW 6 Series & 8 Series</h3>
+        <p>These series have seen various iterations and body styles over the years, representing BMW's grand tourers and luxury coupes/convertibles.</p>
+        <ul class="model-list">
+            <li><strong>E24 6 Series (1976-1989):</strong> A stylish and sporty coupe based on the 5 Series platform.</li>
+            <li><strong>E31 8 Series (1990-1999):</strong> A technologically advanced and luxurious grand tourer with V8 and V12 engine options.</li>
+            <li><strong>E63/E64 6 Series (2003-2010):</strong> A more modern interpretation of the 6 Series, available as a coupe and convertible.</li>
+            <li><strong>F12/F13/F06 6 Series (2011-2018):</strong> Included coupe, convertible, and Gran Coupe (four-door coupe) body styles.</li>
+            <li><strong>G32 6 Series Gran Turismo (2017-Present):</strong> A more practical, hatchback-style grand tourer.</li>
+            <li><strong>G14/G15/G16 8 Series (2018-Present):</strong> A revival of the 8 Series as a luxurious and high-performance coupe, convertible, and Gran Coupe.</li>
+        </ul>
+    </div>
+
+    <div class="series-section">
+        <h3 class="model-title">BMW 1 Series & 2 Series</h3>
+        <p>Representing BMW's compact offerings.</p>
+        <ul class="model-list">
+            <li><strong>E81/E82/E87/E88 1 Series (2004-2013):</strong> The first generation of the 1 Series, available as a three-door hatchback, five-door hatchback, coupe, and convertible, and notably featured rear-wheel drive in a compact segment.</li>
+            <li><strong>F20/F21 1 Series (2011-2019):</strong> The second generation 1 Series hatchbacks, continuing with rear-wheel drive.</li>
+            <li><strong>F22/F23 2 Series (2014-Present):</strong> The coupe and convertible versions of the 1 Series were spun off into the 2 Series, maintaining rear-wheel drive.</li>
+            <li><strong>F45/F46 2 Series Active Tourer/Gran Tourer (2014-Present):</strong> Front-wheel drive MPV models.</li>
+            <li><strong>F44 2 Series Gran Coupe (2019-Present):</strong> A stylish four-door coupe with front-wheel drive.</li>
+            <li><strong>G42 2 Series Coupe (2021-Present):</strong> The latest generation 2 Series Coupe, retaining rear-wheel drive.</li>
+            <li><strong>U10/U11 1 Series (2022/2024-Present):</strong> The latest generation 1 Series hatchback, now with front-wheel drive.</li>
+        </ul>
+    </div>
+    <div class="series-section">
+        <h3 class="model-title">BMW X Series (SUVs & Crossovers)</h3>
+        <ul class="model-list">
+            <li><strong>E53 X5 (1999-2006):</strong> BMW's first SUV, emphasizing sporty handling on-road.</li>
+            <li><strong>E83 X3 (2003-2010):</strong> A more compact SUV.</li>
+            <li><strong>E70 X5 (2006-2013):</strong> The second generation X5, offering more space and luxury.</li>
+            <li><strong>E71 X6 (2008-2014):</strong> Pioneered the "Sports Activity Coupe" (SAC) design.</li>
+            <li><strong>F25 X3 (2010-2017):</strong> The second generation X3, offering improved refinement.</li>
+            <li><strong>F26 X4 (2014-2018):</strong> The coupe version of the X3 (SAC).</li>
+            <li><strong>F15 X5 (2013-2018):</strong> The third generation X5.</li>
+            <li><strong>F16 X6 (2014-2019):</strong> The second generation X6.</li>
+            <li><strong>G01 X3 (2017-Present):</strong> The current generation X3.</li>
+            <li><strong>G02 X4 (2018-Present):</strong> The current generation X4.</li>
+            <li><strong>G05 X5 (2018-Present):</strong> The current generation X5.</li>
+            <li><strong>G06 X6 (2019-Present):</strong> The current generation X6.</li>
+            <li><strong>G07 X7 (2019-Present):</strong> BMW's flagship luxury SUV.</li>
+            <li><strong>U11 X1 (2022-Present):</strong> The latest generation X1, now also available in electric form (iX1).</li>
+            <li><strong>U06 X2 (2023-Present):</strong> The latest generation X2, also available in electric form (iX2).</li>
+            <li><strong>iX3 (2020-Present):</strong> Electric version of the X3.</li>
+            <li><strong>iX (2021-Present):</strong> A dedicated electric SUV.</li>
+        </ul>
+    </div>
+
+    <div class="series-section">
+        <h3 class="model-title">BMW Z Series (Roadsters)</h3>
+        <ul class="model-list">
+            <li><strong>Z1 (1989-1991):</strong> A quirky and innovative roadster with unique drop-down doors.</li>
+            <li><strong>E36/7 Z3 (1995-2002):</strong> A more mainstream roadster that gained popularity. Also available as a coupe (Z3 M Coupe "Clown Shoe").</li>
+            <li><strong>E85/E86 Z4 (2002-2008):</strong> The successor to the Z3, available as a roadster and coupe.</li>
+            <li><strong>E89 Z4 (2009-2016):</strong> A retractable hardtop roadster.</li>
+            <li><strong>G29 Z4 (2018-Present):</strong> The current generation Z4, developed in collaboration with Toyota (Supra).</li>
+        </ul>
+    </div>
+
+    <div class="series-section">
+        <h3 class="model-title">BMW i Series (Electric Vehicles)</h3>
+        <ul class="model-list">
+            <li><strong>i3 (2013-2022):</strong> A revolutionary electric city car with a carbon fiber reinforced plastic (CFRP) body.</li>
+            <li><strong>i8 (2014-2020):</strong> A futuristic plug-in hybrid sports car.</li>
+            <li><strong>iX (2021-Present):</strong> A flagship electric SUV.</li>
+            <li><strong>i4 (2021-Present):</strong> An electric Gran Coupe.</li>
+            <li><strong>iX1 (2022-Present):</strong> Electric version of the X1.</li>
+            <li><strong>i7 (2022-Present):</strong> Electric version of the 7 Series.</li>
+            <li><strong>i5 (2023-Present):</strong> Electric version of the 5 Series.</li>
+            <li><strong>iX2 (2024-Present):</strong> Electric version of the X2.</li>
+        </ul>
+    </div>
+
+    <div class="series-section">
+        <h3 class="model-title">M Models</h3>
+        <p>High-performance versions of many of the above series, developed by BMW M GmbH (formerly BMW Motorsport). These models feature more powerful engines, upgraded suspension, aerodynamic enhancements, and distinctive styling.</p>
+    </div>
+</section>
+<center>
+<!--Explore button  -->
+<button onclick="explore()" class="learn-more">
+  <span class="circle" aria-hidden="true">
+  <span class="icon arrow"></span>
+  </span>
+  <span class="button-text">Learn More</span>
+</button>
+</center>
+        <br><br>
+        <!------------------------------------social media buttons   ----------------------------------->
+         <div class="social-media">
+<center>
+
+        <button onclick="facebook()" class="btn-base facebook">
+            <span class="svg-container">
+                <svg viewBox="0 0 320 512" height="1.3em" fill="white">
+                    <path d="M80 299.3V512H196V299.3h86.5l18-97.8H196V166.9c0-51.7 20.3-71.5 72.7-71.5c16.3 0 29.4 .4 37 1.2V7.9C291.4 4 256.4 0 236.2 0C129.3 0 80 50.5 80 159.4v42.1H14v97.8H80z"></path>
+                </svg>
+            </span>
+            <span class="bg"></span>
+        </button>
+        <button onclick="instagram()" class="btn-base instagram">
+            <span class="svg-container">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" color="#ffffff" fill="none">
+    <path d="M2.5 12C2.5 7.52166 2.5 5.28249 3.89124 3.89124C5.28249 2.5 7.52166 2.5 12 2.5C16.4783 2.5 18.7175 2.5 20.1088 3.89124C21.5 5.28249 21.5 7.52166 21.5 12C21.5 16.4783 21.5 18.7175 20.1088 20.1088C18.7175 21.5 16.4783 21.5 12 21.5C7.52166 21.5 5.28249 21.5 3.89124 20.1088C2.5 18.7175 2.5 16.4783 2.5 12Z" stroke="#ffffff" strokeWidth="1.5" strokeLinejoin="round"></path>
+    <path d="M16.5 12C16.5 14.4853 14.4853 16.5 12 16.5C9.51472 16.5 7.5 14.4853 7.5 12C7.5 9.51472 9.51472 7.5 12 7.5C14.4853 7.5 16.5 9.51472 16.5 12Z" stroke="#ffffff" strokeWidth="1.5"></path>
+    <path d="M17.5078 6.5L17.4988 6.5" stroke="#ffffff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path>
+</svg>
+            </span>
+            <span class="bg"></span>
+        </button>
+
+        <button onclick="telegram()" class="btn-base telegram">
+            <span class="svg-container">
+                <svg viewBox="0 0 496 512" height="1.6em" fill="white">
+                    <path d="M248 8C111 8 0 119 0 256S111 504 248 504 496 393 496 256 385 8 248 8zM363 176.7c-3.7 39.2-19.9 134.4-28.1 178.3-3.5 18.6-10.3 24.8-16.9 25.4-14.4 1.3-25.3-9.5-39.3-18.7-21.8-14.3-34.2-23.2-55.3-37.2-24.5-16.1-8.6-25 5.3-39.5 3.7-3.8 67.1-61.5 68.3-66.7 .2-.7 .3-3.1-1.2-4.4s-3.6-.8-5.1-.5q-3.3 .7-104.6 69.1-14.8 10.2-26.9 9.9c-8.9-.2-25.9-5-38.6-9.1-15.5-5-27.9-7.7-26.8-16.3q.8-6.7 18.5-13.7 108.4-47.2 144.6-62.3c68.9-28.6 83.2-33.6 92.5-33.8 2.1 0 6.6 .5 9.6 2.9a10.5 10.5 0 0 1 3.5 6.7A43.8 43.8 0 0 1 363 176.7z"></path>
+                </svg>
+            </span>
+            <span class="bg"></span>
+        </button>
+
+        <button onclick="youtube()" class="btn-base youtube">
+            <span class="svg-container">
+                <svg viewBox="0 0 576 512" height="1.6em" fill="white">
+                    <path d="M549.7 124.1c-6.3-23.7-24.8-42.3-48.3-48.6C458.8 64 288 64 288 64S117.2 64 74.6 75.5c-23.5 6.3-42 24.9-48.3 48.6-11.4 42.9-11.4 132.3-11.4 132.3s0 89.4 11.4 132.3c6.3 23.7 24.8 41.5 48.3 47.8C117.2 448 288 448 288 448s170.8 0 213.4-11.5c23.5-6.3 42-24.2 48.3-47.8 11.4-42.9 11.4-132.3 11.4-132.3s0-89.4-11.4-132.3zm-317.5 213.5V175.2l142.7 81.2-142.7 81.2z"></path>
+                </svg>
+            </span>
+            <span class="bg"></span>
+        </button>
+
+        <button onclick="email()" class="btn-base email">
+            <span class="svg-container">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28" color="#d0021b" fill="none">
+    <path d="M2 6L8.91302 9.91697C11.4616 11.361 12.5384 11.361 15.087 9.91697L22 6" stroke="#d0021b" strokeWidth="3" strokeLinejoin="round"></path>
+    <path d="M2.01577 13.4756C2.08114 16.5412 2.11383 18.0739 3.24496 19.2094C4.37608 20.3448 5.95033 20.3843 9.09883 20.4634C11.0393 20.5122 12.9607 20.5122 14.9012 20.4634C18.0497 20.3843 19.6239 20.3448 20.7551 19.2094C21.8862 18.0739 21.9189 16.5412 21.9842 13.4756C22.0053 12.4899 22.0053 11.5101 21.9842 10.5244C21.9189 7.45886 21.8862 5.92609 20.7551 4.79066C19.6239 3.65523 18.0497 3.61568 14.9012 3.53657C12.9607 3.48781 11.0393 3.48781 9.09882 3.53656C5.95033 3.61566 4.37608 3.65521 3.24495 4.79065C2.11382 5.92608 2.08114 7.45885 2.01576 10.5244C1.99474 11.5101 1.99475 12.4899 2.01577 13.4756Z" stroke="#d0021b" strokeWidth="3" strokeLinejoin="round"></path>
+</svg>
+            </span>
+            <span class="bg"></span>
+        </button>
+    </center>
+    </div>
+    
+
+   
+  
+ <footer>
+     <h2 class="text">Created by</h2>
+    <img
+          src="/image/SH Web app studio2.png"
+          alt="Cars ClubX"
+          width="200"
+          height="100"
+        />
+      <p>&copy; 2025 Cars HubX:FOR Car Enthusiasts Wallpaper& History </p>
+  </footer>
+</div>
+<script src="cars.js"></script>
+ 
+    
+</body>
+</html>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cars HubX - Loading</title>
+    <link rel="icon" href="/image/CARS HUBX.png"/>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #1d1616;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+        }
+
+        .loader-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .logo {
+            width: 150px;
+            height: 150px;
+            margin-bottom: 20px;
+            animation: pulse 2s infinite;
+            z-index: 10;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                filter: drop-shadow(0 0 0 rgba(216, 64, 64, 0.7));
+            }
+            50% {
+                transform: scale(1.05);
+                filter: drop-shadow(0 0 10px rgba(216, 64, 64, 0.7));
+            }
+            100% {
+                transform: scale(1);
+                filter: drop-shadow(0 0 0 rgba(216, 64, 64, 0.7));
+            }
+        }
+
+        .card {
+            overflow: visible;
+            width: 150px;
+            height: 170px;
+            margin-bottom: 40px;
+            perspective: 1000px;
+        }
+
+        .content {
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            transition: transform 300ms;
+            box-shadow: 0px 0px 15px 2px rgba(0, 0, 0, 0.8);
+            border-radius: 10px;
+            animation: card-rotate 3s infinite ease-in-out;
+        }
+
+        @keyframes card-rotate {
+            0%, 100% {
+                transform: rotateY(0deg);
+            }
+            50% {
+                transform: rotateY(15deg);
+            }
+        }
+
+        .front, .back {
+            background-color: #151515;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .back {
+            width: 100%;
+            height: 100%;
+            justify-content: center;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .back::before {
+            position: absolute;
+            content: ' ';
+            display: block;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(238, 238, 238, 0.1), rgba(238, 238, 238, 0.2), rgba(238, 238, 238, 0.1), transparent);
+            animation: card-shine 3s infinite linear;
+        }
+
+        @keyframes card-shine {
+            0% {
+                transform: translateX(-200%) skewX(-30deg);
+            }
+            100% {
+                transform: translateX(200%) skewX(-30deg);
+            }
+        }
+
+        .back-content {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: rgb(216, 64, 64);
+            border-radius: 10px;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Loading text */
+        .loading-text {
+            position: relative;
+            color: #ffffff;
+            font-size: 18px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            margin-top: 20px;
+            text-transform: uppercase;
+            text-shadow: 0 0 10px rgba(216, 64, 64, 0.5);
+        }
+
+        .loading-text::after {
+            content: '';
+            animation: loading-dots 1.5s infinite;
+        }
+
+        @keyframes loading-dots {
+            0% { content: ''; }
+            25% { content: '.'; }
+            50% { content: '..'; }
+            75% { content: '...'; }
+            100% { content: ''; }
+        }
+    </style>
+</head>
+<body>
+    <div class="loader-container">
+        <div class="card">
+            <div class="content">
+                <div class="back">
+                    <div class="back-content">
+                        <img src="/image/CARS HUBX.png" alt="Cars HubX" class="logo">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="loading-text">Loading</div>
+    </div>
+    
+   
+    
+    <script>
+      
+        window.addEventListener('load', () => {
+            // Get the next page from sessionStorage
+            const nextPage = sessionStorage.getItem('nextPage') || 'index.html';
+            // Clear the stored page
+            sessionStorage.removeItem('nextPage');
+            // Simulate loading time
+            setTimeout(() => {
+                window.location.href = nextPage;
+            }, 3000); // 3 seconds loading time
+        });
+        
+    </script>
+</body>
+</html>

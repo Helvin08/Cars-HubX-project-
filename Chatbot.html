@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cars HubX - Chat Bot </title>
+  <link rel="icon" href="/image/CARS HUBX.png" />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #1d1616 0%, #2c1f1f 100%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 1rem;
+    }
+    .video-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+}
+
+#background-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.video-background::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+}
+
+    .chat-container {
+      background-color: rgba(238, 238, 238, 0.95);
+      border-radius: 20px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+      width: 100%;
+      max-width: 500px;
+      height: 600px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .chat-container:hover {
+      transform: translateY(-5px);
+    }
+
+    .chat-header {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      background: linear-gradient(45deg, #d32f2f, #f44336);
+      padding: 1.2rem;
+      color: white;
+      font-weight: 600;
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .chat-header img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 2px solid white;
+      transition: transform 0.3s ease;
+    }
+
+    .chat-header img:hover {
+      transform: scale(1.1);
+    }
+
+    .chat-messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(245, 245, 245, 0.95) 100%);
+    }
+
+    .chat-messages::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .chat-messages::-webkit-scrollbar-thumb {
+      background: #d32f2f;
+      border-radius: 3px;
+    }
+
+    .message {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      max-width: 85%;
+      animation: messageAppear 0.3s ease;
+    }
+
+    @keyframes messageAppear {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .avatar {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      border: 2px solid #fff;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .avatar:hover {
+      transform: scale(1.1);
+    }
+
+    .message-content {
+      background: white;
+      padding: 12px 16px;
+      border-radius: 18px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+      position: relative;
+    }
+
+    .user-message {
+      flex-direction: row-reverse;
+      align-self: flex-end;
+    }
+
+    .user-message .message-content {
+      background: linear-gradient(45deg, #d32f2f, #f44336);
+      color: white;
+      border-bottom-right-radius: 5px;
+    }
+
+    .bot-message .message-content {
+      background: linear-gradient(45deg, #263238, #37474F);
+      color: white;
+      border-bottom-left-radius: 5px;
+    }
+
+    .timestamp {
+      font-size: 0.7rem;
+      color: rgba(255, 255, 255, 0.7);
+      margin-top: 4px;
+    }
+
+    .chat-input-container {
+      display: flex;
+      gap: 10px;
+      padding: 1.2rem;
+      background: white;
+      border-top: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .chat-input {
+      flex: 1;
+      padding: 12px 18px;
+      border: 2px solid rgba(0, 0, 0, 0.1);
+      border-radius: 25px;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      background: rgba(255, 255, 255, 0.9);
+    }
+
+    .chat-input:focus {
+      border-color: #d32f2f;
+      box-shadow: 0 0 0 3px rgba(211, 47, 47, 0.1);
+      outline: none;
+    }
+
+    .send-button {
+      background: #d32f2f;
+      color: white;
+      border: none;
+      border-radius: 25px;
+      padding: 12px 24px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .send-button:hover {
+      background: #f44336;
+      transform: translateY(-2px);
+    }
+
+    .send-button:active {
+      transform: translateY(0);
+    }
+
+    .suggestions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 15px;
+    }
+
+    .suggestion-chip {
+      background: rgba(211, 47, 47, 0.1);
+      color: #d32f2f;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(211, 47, 47, 0.2);
+    }
+
+    .suggestion-chip:hover {
+      background: rgba(211, 47, 47, 0.2);
+      transform: translateY(-2px);
+    }
+
+    .clickable-link {
+      color: #90caf9;
+      text-decoration: none;
+      border-bottom: 1px dashed #90caf9;
+      transition: all 0.3s ease;
+    }
+
+    .clickable-link:hover {
+      color: #bbdefb;
+      border-bottom-color: #bbdefb;
+    }
+
+    .welcome-message {
+      text-align: center;
+      color: #d32f2f;
+      margin: auto;
+      padding: 2rem;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 20px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    }
+
+    .welcome-message p {
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+      font-weight: 500;
+    }
+
+    .typing-indicator {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 12px 16px;
+      background: linear-gradient(45deg, #263238, #37474F);
+      border-radius: 18px;
+      width: fit-content;
+      margin-top: 8px;
+      align-self: flex-start;
+    }
+
+    .typing-dot {
+      width: 8px;
+      height: 8px;
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 50%;
+      animation: typingAnimation 1.4s infinite ease-in-out;
+    }
+
+    @keyframes typingAnimation {
+      0%,
+      60%,
+      100% {
+        transform: translateY(0);
+      }
+
+      30% {
+        transform: translateY(-4px);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .chat-container {
+        height: calc(100vh - 2rem);
+        max-height: 600px;
+        border-radius: 15px;
+      }
+
+      .chat-header {
+        padding: 1rem;
+      }
+
+      .suggestions {
+        padding: 0.5rem;
+      }
+
+      .suggestion-chip {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+      }
+    }
+    /*home button*/
+.home-button-container {
+  position: fixed;
+  bottom: 30px;
+  left: 30px;
+  z-index: 100;
+}
+
+.home-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  color: white;
+  font-size: 1em;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(5px);
+}
+
+.home-button:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+}
+
+.home-button svg {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+  </style>
+</head>
+
+<body>
+   <div class="video-background">
+    <video autoplay muted loop id="background-video">
+      <source src="image/background video2.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+  <div class="chat-container">
+    <div class="chat-header">
+      Chat Bot - Cars HubX
+    </div>
+    <div class="chat-messages" id="chat-messages">
+      <div class="welcome-message">
+        <p>👋 Hi there! How can I help you today?</p>
+        <div class="suggestions">
+          <div class="suggestion-chip">Car wallpapers</div>
+          <div class="suggestion-chip">Car brands</div>
+          <div class="suggestion-chip">Car history</div>
+          <div class="suggestion-chip">About Cars HubX</div>
+          <div class="suggestion-chip">Contact us</div>
+        </div>
+      </div>
+    </div>
+    <div class="chat-input-container">
+      <input type="text" class="chat-input" id="user-input" placeholder="Type your message..."
+        aria-label="Type your message">
+      <button class="send-button" id="send-button">Send</button>
+    </div>
+  </div>
+   <div class="home-button-container">
+            <button onclick="location.href='index.html'" class="home-button">
+                <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
+                    <path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                </svg>
+                Back to Home
+            </button>
+        </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const messagesContainer = document.getElementById('chat-messages');
+      const userInput = document.getElementById('user-input');
+      const sendButton = document.getElementById('send-button');
+      const suggestions = document.querySelectorAll('.suggestion-chip');
+
+      // Store conversation history
+      const messages = [];
+
+      // Add click handlers for suggestion chips
+      suggestions.forEach(chip => {
+        chip.addEventListener('click', () => {
+          userInput.value = chip.textContent;
+          handleSendMessage();
+        });
+      });
+
+      function formatTimestamp() {
+        const now = new Date();
+        return now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      }      // Function to create clickable links in text
+      function linkify(text) {
+        const urlRegex = /\[([^\|\]]+)(?:\|([^\]]+))?\]/g;
+        return text.replace(urlRegex, (match, path, label) => {
+          const displayText = label || path;
+          if (path.startsWith('http') || path.startsWith('mailto:')) {
+            return `<a href="${path}" class="clickable-link" target="_blank">${displayText}</a>`;
+          } else if (path.includes('.html')) {
+            // For internal pages, check if it's in the cars directory
+            const fullPath = path.startsWith('cars/') ? path : `cars/${path}`;
+            return `<a href="${fullPath}" class="clickable-link">${displayText}</a>`;
+          } else {
+            return `<span class="clickable-link">${displayText}</span>`;
+          }
+        });
+      }
+
+      // Function to add a message to the UI
+      function addMessageToUI(content, isUser) {
+        const welcomeMessage = document.querySelector('.welcome-message');
+        if (welcomeMessage) {
+          welcomeMessage.remove();
+        }
+
+        const messageElement = document.createElement('div');
+        messageElement.classList.add('message');
+        messageElement.classList.add(isUser ? 'user-message' : 'bot-message');
+
+        const messageContent = document.createElement('div');
+        messageContent.classList.add('message-content');
+
+        const avatar = document.createElement('img');
+        avatar.classList.add('avatar');
+        avatar.src = isUser ? 'image/user.png' : 'image/CARS HUBX.png';
+        avatar.alt = isUser ? 'User' : 'Bot';
+
+        const textElement = document.createElement('p');
+        textElement.classList.add('message-text');
+        textElement.innerHTML = linkify(content);
+
+        const timestamp = document.createElement('span');
+        timestamp.classList.add('timestamp');
+        timestamp.textContent = formatTimestamp();
+
+        messageContent.appendChild(textElement);
+        messageContent.appendChild(timestamp);
+
+        messageElement.appendChild(avatar);
+        messageElement.appendChild(messageContent);
+
+        messagesContainer.appendChild(messageElement);
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;        // Add click handlers for links
+        messageElement.querySelectorAll('.clickable-link').forEach(link => {
+          link.addEventListener('click', (e) => {
+            if (link.tagName === 'A') {
+              e.preventDefault();
+              if (link.href.startsWith('http') || link.href.startsWith('mailto:')) {
+                window.open(link.href, '_blank');
+              } else {
+                // For internal pages
+                window.location.href = link.href;
+              }
+            } else {
+              userInput.value = link.textContent;
+              handleSendMessage();
+            }
+          });
+        });
+      }
+
+      // Function to show typing indicator
+      function showTypingIndicator() {
+        const indicator = document.createElement('div');
+        indicator.classList.add('typing-indicator');
+        indicator.id = 'typing-indicator';
+
+        for (let i = 0; i < 3; i++) {
+          const dot = document.createElement('div');
+          dot.classList.add('typing-dot');
+          indicator.appendChild(dot);
+        }
+
+        messagesContainer.appendChild(indicator);
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+      }
+
+      // Function to remove typing indicator
+      function removeTypingIndicator() {
+        const indicator = document.getElementById('typing-indicator');
+        if (indicator) {
+          indicator.remove();
+        }
+      }
+
+      // Function to send message to OpenAI API
+      async function sendMessageToAPI(userMessage) {
+        try {
+          // Add your OpenAI API key here
+          const apiKey = 'YOUR_OPENAI_API_KEY';
+
+          // If you don't have an API key, use this mock response function
+          if (!apiKey || apiKey === 'YOUR_OPENAI_API_KEY') {
+            return mockResponse(userMessage);
+          }
+
+          const response = await fetch('https://api.openai.com/v1/chat/completions', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${apiKey}`
+            },
+            body: JSON.stringify({
+              model: 'gpt-3.5-turbo',
+              messages: [
+                { role: 'system', content: 'You are a helpful assistant.' },
+                ...messages,
+                { role: 'user', content: userMessage }
+              ],
+              max_tokens: 150
+            })
+          });
+
+          const data = await response.json();
+          return data.choices[0].message.content;
+        } catch (error) {
+          console.error('Error:', error);
+          return 'Sorry, I encountered an error. Please try again later.';
+        }
+      }      // Mock response function for when API key is not provided
+      function mockResponse(userMessage) {
+        return new Promise((resolve) => {
+          setTimeout(() => {
+            const responses = {
+              'hello': 'Hello! 👋 Welcome to Cars HubX! How can I help you today?\nYou can explore our:\n- [Popular Brands]\n- [Luxury Cars]\n- [Sports Cars]',
+              'hi': 'Hi there! 👋 Welcome to Cars HubX! Here are some quick links:\n- [Latest Wallpapers]\n- [Popular Brands]\n- [Contact Us]',
+              'how are you': 'I\'m running smoothly like a well-tuned engine! 🚗 How can I assist you today?\n\nPopular searches:\n- [Supercars]\n- [Classic Cars]\n- [New Arrivals]',
+              'what is your name': 'I\'m the Cars HubX Assistant, your friendly automotive companion! 🤖\nI can help you explore:\n- [All Brands]\n- [Car History]\n- [Wallpapers]',
+              'bye': 'Ok bye! 🚗 Feel free to come back anytime! 👋\nBookmark these for later:\n- [index.html|Homepage]\n- [cars/cars.js|All Collections]',
+              'thank you': 'You\'re welcome! 🚗 Here are some links you might enjoy:\n- [Latest Updates]\n- [Featured Cars]\n- [Mobile Wallpapers]',
+              'car wallpapers': 'Here\'s our amazing wallpaper collection:\n\n🏎️ Popular Brands:\n- [cars/BMW.html|BMW Wallpapers]\n- [cars/Audi.html|Audi Gallery]\n- [cars/Mercedes.html|Mercedes Collection]\n- [cars/Ferrari.html|Ferrari Showcase]\n- [cars/Lamborghini.html|Lamborghini Collection]',
+              'car brands': '🚗 Browse our extensive brand collections:\n\nLuxury Brands:\n- [cars/BMW.html|BMW]\n- [cars/Audi.html|Audi]\n- [cars/Mercedes.html|Mercedes]\n- [cars/Rolls Royce.html|Rolls Royce]\n\nSports Cars:\n- [cars/Ferrari.html|Ferrari]\n- [cars/Lamborghini.html|Lamborghini]\n- [cars/Porsche.html|Porsche]\n\nClick any brand to explore!',
+              'bmw': '🏎️ BMW Collection:\n- [cars/BMW.html|Latest Wallpapers]\n- [cars/BMW hs.html|Brand History]\n- [cars/BMW mobile wall.html|Mobile Wallpapers]',
+              'audi': '🏎️ Audi Collection:\n- [cars/Audi.html|Latest Wallpapers]\n- [cars/Audi hs.html|Brand History]\n- [cars/Audi mobile wall.html|Mobile Wallpapers]',
+              'mercedes': '🏎️ Mercedes-Benz Collection:\n- [cars/Mercedes.html|Latest Wallpapers]\n- [cars/Mercedes hs.html|Brand History]\n- [cars/Mercedes mobile wall.html|Mobile Wallpapers]',
+              'ferrari': '🏎️ Ferrari Collection:\n- [cars/Ferrari.html|Latest Wallpapers]\n- [cars/Ferrari hs.html|Brand History]\n- [cars/Ferrari mobile wall.html|Mobile Wallpapers]',
+              'lamborghini': '🏎️ Lamborghini Collection:\n- [cars/Lamborghini.html|Latest Wallpapers]\n- [cars/Lamborghini hs.html|Brand History]\n- [cars/Lamborghini mobile wall.html|Mobile Wallpapers]',
+              'porsche': '🏎️ Porsche Collection:\n- [cars/Porsche.html|Latest Wallpapers]\n- [cars/Porsche hs.html|Brand History]\n- [cars/Porsche mobile wall.html|Mobile Wallpapers]',              'contact': 'You can contact us via:\n- Email: [mailto:carshubx0@gmail.com|carshubx0@gmail.com]\n- Facebook: [https://www.facebook.com/cars.hubx|Cars HubX Facebook]\n- Instagram: [https://www.instagram.com/cars_hubx|Cars HubX Instagram]\n- Telegram: [https://t.me/carshubx|Cars HubX Telegram]\n- Youtube: [https://www.youtube.com/channel/UC-t2QPsmo5UWktlYsOMSbYA|Cars HubX Youtube]\nWe\'re here to help you with any questions or feedback!',
+              'contact us': 'You can contact us via:\n- Email: [mailto:carshubx0@gmail.com|carshubx0@gmail.com]\n- Facebook: [https://www.facebook.com/cars.hubx|Cars HubX Facebook]\n- Instagram: [https://www.instagram.com/cars_hubx|Cars HubX Instagram]\n- Telegram: [https://t.me/carshubx|Cars HubX Telegram]\n- Youtube: [https://www.youtube.com/channel/UC-t2QPsmo5UWktlYsOMSbYA|Cars HubX Youtube]\nWe\'re here to help you with any questions or feedback!',
+              'lamborghini': 'View our Lamborghini collection:\n- Wallpapers: [Lamborghini.html]\n- History: [Lamborghini hs.html]\n- Mobile Wallpapers: [Lamborghini mobile wall.html]','car history': '📚 Explore Automotive History:\n\nPopular Brands History:\n- [cars/BMW hs.html|BMW History]\n- [cars/Mercedes hs.html|Mercedes-Benz Legacy]\n- [cars/Ferrari hs.html|Ferrari Story]\n- [cars/Porsche hs.html|Porsche Heritage]\n\nMore Brand Histories:\n- [cars/Audi hs.html|Audi]\n- [cars/Lamborghini hs.html|Lamborghini]\n- [cars/Bentley hs.html|Bentley]',
+              'mobile wallpapers': '📱 Mobile Wallpapers Collection:\n\nPopular Brands:\n- [cars/BMW mobile wall.html|BMW Mobile]\n- [cars/Audi mobile wall.html|Audi Mobile]\n- [cars/Mercedes mobile wall.html|Mercedes Mobile]\n- [cars/Ferrari mobile wall.html|Ferrari Mobile]\n- [cars/Lamborghini mobile wall.html|Lamborghini Mobile]',
+              'luxury cars': '🎯 Luxury Car Collections:\n\n- [cars/Rolls Royce.html|Rolls Royce]\n- [cars/Bentley.html|Bentley]\n- [cars/Mercedes.html|Mercedes-Benz]\n- [cars/BMW.html|BMW]\n- [cars/Audi.html|Audi]\n- [cars/Lexus.html|Lexus]',
+              'sports cars': '🏎️ Sports Car Collections:\n\n- [cars/Ferrari.html|Ferrari]\n- [cars/Lamborghini.html|Lamborghini]\n- [cars/Porsche.html|Porsche]\n- [cars/Chevrolet corvette.html|Corvette]\n- [cars/Aston Martin.html|Aston Martin]',
+              'about': 'Welcome to Cars HubX! 🚗✨\n\nWe are your ultimate destination for:\n- [car wallpapers|HD Wallpapers]\n- [car history|Brand Histories]\n- [mobile wallpapers|Mobile Collection]\n\nCreated by SH Web & App Studio, we\'re passionate about bringing you the best car content!',
+              'help': 'I can help you explore:\n\n🚗 Categories:\n- [car wallpapers|HD Wallpapers]\n- [car brands|Brand Collections]\n- [car history|Brand Histories]\n- [mobile wallpapers|Mobile Collection]\n- [luxury cars|Luxury Cars]\n- [sports cars|Sports Cars]\n\n💡 Need specific help? Just ask about any car brand!',
+              'contact us': 'You can contact us via:\n- Email: [mailto:carshubx0@gmail.com|carshubx0@gmail.com]\n- facebook: [https://www.facebook.com/cars.hubx|Cars HubX Facebook]\n- Instagram: [https://www.instagram.com/cars_hubx|Cars HubX Instagram]\n- Telegram:[https://t.me/carshubx|Cars HubX Telegram]\n- Youtube:[https://www.youtube.com/channel/UC-t2QPsmo5UWktlYsOMSbYA|Cars hubX Youtube]\nWe\'re here to help you with any questions or feedback!',
+            };
+
+            const lowerUserMessage = userMessage.toLowerCase();
+
+            // Check for brand history queries
+            if (lowerUserMessage.includes('history')) {
+              for (const brand of ['bmw', 'audi', 'mercedes', 'ferrari', 'lamborghini']) {
+                if (lowerUserMessage.includes(brand)) {
+                  resolve(`Here's the history of ${brand.toUpperCase()}: [${brand} hs.html]`);
+                  return;
+                }
+              }
+            }
+
+            // Check for regular responses
+            for (const [key, value] of Object.entries(responses)) {
+              if (lowerUserMessage.includes(key)) {
+                resolve(value);
+                return;
+              }
+            }
+
+            // Default response with suggestions
+            resolve('I\'m not sure about that. Here are some topics you might be interested in:\n- [Car wallpapers]\n- [Car brands]\n- [Car history]\n- [Contact] us for more help');
+          }, 1000);
+        });
+      }
+
+      // Function to handle sending a message
+      async function handleSendMessage() {
+        const userMessage = userInput.value.trim();
+
+        if (userMessage === '') return;
+
+        // Disable input and button while processing
+        userInput.disabled = true;
+        sendButton.disabled = true;
+
+        // Add user message to UI
+        addMessageToUI(userMessage, true);
+
+        // Add user message to history
+        messages.push({ role: 'user', content: userMessage });
+
+        // Clear input
+        userInput.value = '';
+
+        // Show typing indicator
+        showTypingIndicator();
+
+        // Get response from API
+        const botResponse = await sendMessageToAPI(userMessage);
+
+        // Remove typing indicator
+        removeTypingIndicator();
+
+        // Add bot response to UI
+        addMessageToUI(botResponse, false);
+
+        // Add bot response to history
+        messages.push({ role: 'assistant', content: botResponse });
+
+        // Re-enable input and button
+        userInput.disabled = false;
+        sendButton.disabled = false;
+        userInput.focus();
+      }
+
+      // Event listeners
+      sendButton.addEventListener('click', handleSendMessage);
+
+      userInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+          handleSendMessage();
+        }
+      });
+
+      // Focus input on load
+      userInput.focus();
+    });
+  </script>
+</body>
+
+</html>
