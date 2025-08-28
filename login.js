@@ -29,7 +29,6 @@ const validUsers = [
     { email: 'test@carshubx.com', password: 'test123' },
     { email: 'demo@carshubx.com', password: 'demo2025' },
     { email: 'guest@carshubx.com', password: 'guest123' },
-    { email: 'henisha@carshubx.com', password:'Henisha.0'},
 ];
 
 // Initialize local storage with predefined users if not already set

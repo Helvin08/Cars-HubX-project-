@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cars HubX - Forgot Password</title>
+    <link rel="stylesheet" href="login.css" />
+    <link rel="icon" href="image/CARS HUBX.png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  </head>
+  <body style="background-color: #0a0a0a;">
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <center>
+            <img src="image/CARS HUBX.png" alt="Cars HubX Logo" width="150" height="180">
+            <p>Created By</p>
+          </center>
+        </div>
+        <div class="flip-card-back">
+          <img src="image/SH Web app studio2.png" alt="SH Web App Studio Logo" width="200" height="200">
+        </div>
+      </div>
+    </div>
+
+    <main class="login-container">
+      <div class="form-section">
+        <form class="form" id="forgotForm" novalidate>
+          <div class="flex-column">
+            <h1>Forgot Password</h1>
+            <h2 class="brand-name">Cars HubX</h2>
+          </div>
+          <div class="input-group">
+            <label for="email" class="form-label">Email</label>
+            <div class="inputForm">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 32 32" aria-hidden="true">
+                <path d="m30.853 13.87a15 15 0 0 0 -29.729 4.082 15.1 15.1 0 0 0 12.876 12.918 15.6 15.6 0 0 0 2.016.13 14.85 14.85 0 0 0 7.715-2.145 1 1 0 1 0 -1.031-1.711 13.007 13.007 0 1 1 5.458-6.529 2.149 2.149 0 0 1 -4.158-.759v-10.856a1 1 0 0 0 -2 0v1.726a8 8 0 1 0 .2 10.325 4.135 4.135 0 0 0 7.83.274 15.2 15.2 0 0 0 .823-7.455zm-14.853 8.13a6 6 0 1 1 6-6 6.006 6.006 0 0 1 -6 6z"></path>
+              </svg>
+              <input 
+                id="email" 
+                name="email"
+                placeholder="Enter your email" 
+                class="input" 
+                type="email" 
+                required 
+                autocomplete="email"
+              />
+            </div>
+          </div>
+          <div class="message-container" aria-live="polite"></div>
+          <button type="submit" class="button-submit">Send Reset Link</button>
+          <p class="signup-text">
+            Remembered your password? <a href="login.html" class="link">Sign In</a>
+          </p>
+        </form>
+      </div>
+    </main>
+    <div class="home-button-container">
+      <button onclick="location.href='index.html'" class="home-button">
+        <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
+          <path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+        </svg>
+        Back to Home
+      </button>
+    </div>
+    <script>
+      // Simple client-side handler for demonstration
+      document.getElementById('forgotForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const email = document.getElementById('email').value;
+        const messageContainer = document.querySelector('.message-container');
+        if (!email) {
+          messageContainer.textContent = 'Please enter your email address.';
+          messageContainer.className = 'message-container error';
+          return;
+        }
+        // Simulate sending reset link
+        messageContainer.textContent = 'If this email is registered, a reset link has been sent.';
+        messageContainer.className = 'message-container success';
+      });
+    </script>
+  </body>
